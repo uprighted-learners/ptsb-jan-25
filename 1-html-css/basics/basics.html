@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML Intro</title>
-    <style>
+    <!-- <style>
         img {
             width: 500px;
         }
@@ -22,8 +22,8 @@
         .red {
             color: red;
         }
-
-    </style>
+    </style> -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 
@@ -32,16 +32,20 @@
     <h2>These are the basics</h2>
     <h6>h6 is very little!</h6>
 
-    <div id="purple-1">This is a div, it provides a line break</div>
-    
-    <p>A P tag also gives a line break... </p>
+    <div id="wrapper">
+
+        <div id="purple-1">This is a div, it provides a line break</div>
+        
+        <p>A P tag also gives a line break... </p>
+    </div>
 
     
 
     <hr />
+    
     <h5>Unordered List</h5>
     <ul>
-        <li>thing 1</li>
+        <li class="blue" style="color:blue;font-family: fantasy;">thing 1</li>
         <li class="red">other thing</li>
         <li>these have bullet points</li>
     </ul>
@@ -50,7 +54,7 @@
     <ol>
         <li>these have numbers</li>
         <li>I don't have to write the numbers</li>
-        <li>they go in order <span class="red">automatically</span></li>
+        <li>they go in order <span class="red blue">automatically</span></li>
     </ol>
 
     Check out <a href="https://upload.wikimedia.org/wikipedia/commons/9/9e/M%C3%BCnster%2C_St.-Lamberti-Kirche%2C_Himmelsleiter_--_2022_--_5147-51.jpg">Himmselsleiter</a>!
