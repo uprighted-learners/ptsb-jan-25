@@ -7,15 +7,24 @@ body {
   background-color: antiquewhite;
 }
 
+h1 {
+  text-align: center;
+}
+
 
 #wrapper {
     width: 50%;
     border: 3px solid red;
     position: static;
+    padding: 2rem;
+    margin: auto;
 }
 
 img {
   width: 500px;
+  padding: 1rem;
+  margin: 1rem;
+  border: 5px dotted black ;
 }
 
 li {
