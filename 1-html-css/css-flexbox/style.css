@@ -1,0 +1,51 @@
+#flex-wrapper {
+    /* style properties */
+    background-color: lightblue;
+    height: 70vh;
+
+    /* flex container properties */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    /* align-content: center; */
+    gap: 1em;
+}
+
+.box {
+    /* style properties */
+    font-size: 2em;
+    height: 100px;
+    width: 100px;
+    border: 2px solid navy;
+    border-radius: 5%;
+    background-color: orchid;
+    color: white;
+
+    /* flex-parent properties */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#one {
+    order: 3;
+    flex-grow: 2;
+}
+
+#four {
+    font-size: 1em;
+    order: -1;
+    /* flex-shrink: 3; */
+}
+
+#six {
+    order: 3;
+    flex-grow: 10;
+}
+
+
+#seven {
+    align-self: center;
+}

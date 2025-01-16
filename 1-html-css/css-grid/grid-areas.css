@@ -38,8 +38,29 @@ body {
 #three {
     grid-area: article1;
     background-color: green;
+    font-size: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 
 }
+
+p {
+    border: 3px solid black;
+}
+
+#image-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    border: 3px solid red;
+}
+
+img {
+    width: 10rem;
+}
+
 
 #four {
     grid-area: article2;
