@@ -8,31 +8,31 @@
     "while loop" is for when the number of iterations is unknown at the start
 */
 
-// // while loop
-// // while (condition) {code block}
+// ? while loop
+// while (condition) {code block}
 
-// let count = 0
-// while (count < 10) {
-//   console.log(count)
-//   count++
-//   //   count += 1
-//   //   count = count + 1
+let count = 0
+while (count < 10) {
+  console.log(count)
+  count++
+  //   count += 1
+  //   count = count + 1
+}
+
+let num = 0
+while (num < 0.9) {
+  num = Math.random()
+  console.log(Number(num.toFixed(5)))
+}
+
+// don't do this!
+// while (true) {
+//     console.log(":)");
 // }
 
-// let num = 0
-// while (num < 0.9) {
-//   num = Math.random()
-//   console.log(Number(num.toFixed(5)))
-// }
+console.log("other stuff happens after the loop finishes")
 
-// // don't do this!
-// // while (true) {
-// //     console.log(":)");
-// // }
-
-// console.log("other stuff happens")
-
-// ? For loops
+// ? for loop
 
 // classic for loop
 for (let index = 0; index < 10; index++) {
@@ -47,6 +47,7 @@ for (let i = 2; i <= 100000; i) {
   // console.log(i)
   i = i ** 2
 }
+
 //            012345678
 const word = "iteration"
 // const word =
@@ -56,7 +57,7 @@ for (let index = 0; index < word.length; index++) {
   // console.log(index, word[index])
 }
 
-// for...of loop
+// ? for...of loop
 // for (elementVariable of iterable) { code block }
 // element refers to a single value in an iterable
 // elementVariable is a new variable, implicitly declared in the for...of definition
@@ -68,15 +69,15 @@ for (letter of word) {
 
 const daysOfWeek = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"]
 
-// for (day of daysOfWeek) {
-//   if (day === "Wed") {
-//     console.log("Wednesday")
-//   } else if (day === "Sat") {
-//     console.log("Saturday")
-//   } else {
-//     console.log(day + "day")
-//   }
-// }
+for (day of daysOfWeek) {
+  if (day === "Wed") {
+    console.log("Wednesday")
+  } else if (day === "Sat") {
+    console.log("Saturday")
+  } else {
+    console.log(day + "day")
+  }
+}
 
 // ! Nesting loops
 // each inner loop must complete all of its iterations before the outer loops can continue
@@ -86,17 +87,17 @@ const letters = "ABC"
 const numbers = "123"
 const lowerCase = "abc"
 
-// for (letter of letters) {
-//   console.log(letter)
-//   for (char of numbers) {
-//     console.log(char)
-//     for (l of lowerCase) {
-//       console.log(l)
-//     }
-//   }
-// }
+for (letter of letters) {
+  console.log(letter)
+  for (char of numbers) {
+    console.log(char)
+    for (l of lowerCase) {
+      console.log(l)
+    }
+  }
+}
 
-// ? Combining loops and conditionals
+// ! Combining loops and conditionals
 
 const vowels = "aeiou"
 
@@ -104,7 +105,6 @@ for (letter of word) {
   // if (vowels.includes(letter)) {
   //   console.log(letter)
   // }
-
   for (vowel of vowels) {
     if (letter == vowel) {
       // console.log(letter)
@@ -122,12 +122,12 @@ for (letter of word) {
 //        increment the minutes by 15
 //    increment the hour
 
-// for (let i = 1; i <= 12; i++) {
-//   console.log(i + " o'clock")
-//   for (let j = 15; j < 60; j += 15) {
-//     console.log(i + ":" + j)
-//   }
-// }
+for (let i = 1; i <= 12; i++) {
+  console.log(i + " o'clock")
+  for (let j = 15; j < 60; j += 15) {
+    console.log(i + ":" + j)
+  }
+}
 
 const firstName = "Danny"
 
@@ -146,6 +146,7 @@ const firstName = "Danny"
 
 const learners = ["Niki", "Rosie", "Nick", "Rob", "Kaleb", "Amos"]
 
+// this does the same thing, once for each student in the array
 for (learner of learners) {
   let spongeBobName = ""
   for (letter of learner) {
@@ -155,19 +156,19 @@ for (learner of learners) {
       spongeBobName += letter.toLowerCase()
     }
   }
-  // console.log(spongeBobName)
+  console.log(spongeBobName)
 }
 
 // Even or Odd:
 // --Write a for loop that iterates from 1 to 20. For each iteration, print whether the number is even or odd.
 
-// for (i = 1; i <= 20; i++) {
-//   if (i % 2 === 0) {
-//     console.log("even")
-//   } else {
-//     console.log("odd")
-//   }
-// }
+for (i = 1; i <= 20; i++) {
+  if (i % 2 === 0) {
+    console.log("even")
+  } else {
+    console.log("odd")
+  }
+}
 
 // Sum of Numbers:
 // --Calculate the sum of all numbers from 1 to 100 using a for loop.
