@@ -179,9 +179,6 @@ for (i = 1; i <= 100; i++) {
 }
 console.log(sum)
 
-// Factorial:
-// --Write a program to calculate the factorial of a given number using a for loop.
-
 // Reverse a String:
 // --Reverse a given string using a for loop.
 
@@ -193,5 +190,49 @@ for (i = thisString.length - 1; i >= 0; i--) {
 }
 console.log(newString)
 
+// Factorial:
+// --Write a program to calculate the factorial of a given number using a for loop.
+
+let factorialOf = 5
+let factorial = 1
+
+for (let i = 1; i <= factorialOf; i++) {
+  factorial *= i
+  // factorial = factorial * i
+}
+console.log(factorial)
+
+// let factorial2 = 1
+// for (let i = 10; i >= 1; i--) {
+//   factorial2 *= i
+//   console.log(factorial2)
+//   // factorial = factorial * i
+// }
+
 // Fibonacci Sequence:
 // --Generate the first 10 numbers in the Fibonacci sequence using a for loop.
+
+//           a b n
+// 0 1 1 2 3 5 8 13 21 34 55 89
+
+// let digits = 10
+// let a = 0
+// let b = 1
+// let fibonacci = [0, 1]
+
+// for (i = 0; fibonacci.length < digits; i++) {
+//   let next = a + b
+//   fibonacci.push(next)
+//   a = b
+//   b = next
+// }
+// console.log(fibonacci)
+
+let digits = 10
+let fibonacci = [0, 1]
+
+for (i = 0; fibonacci.length < digits; i++) {
+  let next = fibonacci.at(-1) + fibonacci.at(-2)
+  fibonacci.push(next)
+}
+console.log(fibonacci)
