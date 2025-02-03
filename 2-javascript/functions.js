@@ -101,11 +101,11 @@ const multiply = (x, y) => {
         - the expression resolves to the return value
 */
 
-let output = add(10, 2) // add() does not declare a return value
-console.log(output) // undefined
+let output2 = add(10, 2) // add() does not declare a return value
+console.log(output2) // undefined
 
-output = multiply(10, 2) // multiply() explicitly declares a return value
-console.log(output) // 20
+output2 = multiply(10, 2) // multiply() explicitly declares a return value
+console.log(output2) // 20
 
 // because the function call is an expression that resolves to a single value
 // functions can be used as a part of a larger expression
@@ -186,4 +186,72 @@ const anagramChecker = (wordOne, wordTwo) => {
 console.log(anagramChecker("cat", "ACT"))
 console.log(anagramChecker("cat", "actor"))
 console.log(anagramChecker("study", "Dusty"))
+
 console.log(anagramChecker("study", "pizza"))
+
+const analyzeTemperature = (temp) => {
+  if (temp > 80) {
+    return "it's hot out"
+  } else if (temp < 55) {
+    return "it's cold out"
+  }
+  return "it's nice out!"
+  console.log("this will never happen")
+}
+
+const output = analyzeTemperature(90)
+// console.log(output)
+
+// ? Concise syntax
+// this is ONLY for arrow functions
+
+// when a function's job is to return a single expression
+// or, when a whole function body can fit on one line
+//    * the curly brackets are optional
+//    * when there's no curly brackets, the return is implicit
+//    * if there's only param, the parens are optional
+
+const double = (num) => {
+  return num * 2
+}
+
+const doubleConcisely = (num) => num * 2
+
+// ? Spread and rest
+
+// spread unpacks an iterable into... something (here, it's params)
+const sumThree = (x, y, z) => x + y + z
+console.log(sumThree(1, 2, 3))
+
+const numsToAdd = [1, 2, 3]
+console.log(sumThree(...numsToAdd))
+
+// rest bundles multipe things into a single Array
+const countParams = (...args) => {
+  console.log(args)
+  return args.length
+}
+
+console.log(countParams(1, 2, 3, 1123, "wheee!", 234, ``, 123))
+
+// Recursion
+
+const countDown = (n) => {
+  if (n === 0) {
+    console.log("Done!")
+    return
+  }
+  console.log(n)
+  countDown(n - 1)
+}
+
+const countDownWithoutRecursion = (n) => {
+  while (n != 0) {
+    console.log(n)
+    n--
+  }
+  console.log("Done!")
+}
+
+countDown(5)
+countDownWithoutRecursion(5)
