@@ -25,20 +25,90 @@ const restaurant = {
       "phone number": "345-456-5678",
     },
   },
+  menu: {
+    sizes: {
+      small: 18,
+      medium: 22,
+      large: 25,
+    },
+    toppings: {
+      mushrooms: 1,
+      "red bell pepper": 1,
+      pepperoni: 3,
+      pineapple: 1.5,
+      olives: 1,
+      anchovies: 3,
+      "cream cheese": 2,
+    },
+  },
+  orders: [],
+  till: 0,
+  // todo: take an arbitrary number of args instead of an array
+  order(size, toppings) {
+    size = size.toLowerCase()
+    if (!this.menu.sizes[size]) {
+      return `${size} is not a size we offer`
+    }
+
+    let price = 0
+    price += this.menu.sizes[size]
+
+    for (topping of toppings) {
+      if (!this.menu.toppings[topping.toLowerCase()]) {
+        return `${topping} is not a topping we offer`
+      }
+      price += this.menu.toppings[topping.toLowerCase()]
+    }
+
+    this.orders.push({ size, toppings, status: "pending" })
+    this.till += price
+
+    return `Your ${size} pizza will cost $${price.toFixed(2)}`
+  },
+
+  cookPizza() {
+    const index = this.orders.findIndex((order) => order.status == "pending")
+    this.orders[index].status = "in the oven"
+  },
+
+  sellPizza() {
+    if (this.orders[0]?.status === "in the oven") {
+      const pizza = this.orders.shift()
+      return `Your ${pizza.size} pizza is ready!`
+    } else if (!this.orders[0]) {
+      return "Would you like to order a pizza?"
+    } else {
+      return `Your pizza will be ready momentarily`
+    }
+  },
 }
 
-restaurant.socialMedia = {
-  instagram: "@gigispizzagram",
-  twitter: "@gigispizza",
-  tiktok: "@gigispizzaontiktok",
-}
+console.log(restaurant.order("small", ["Pineapple", "anchovies"]))
+console.log(restaurant.order("large", ["Cream Cheese", "mushrooms"]))
+console.log(restaurant.order("extra large", ["cream cheese", "mushrooms"]))
+console.log(restaurant.order("medium", ["cream cheese", "SAUSAGE"]))
 
-delete restaurant.staff.manager
+restaurant.cookPizza()
+restaurant.cookPizza()
+// console.log(restaurant.orders)
+console.log(restaurant.sellPizza())
+console.log(restaurant.sellPizza())
+console.log(restaurant.sellPizza())
 
-restaurant.staff.bartender = {
-  name: "Pamella",
-  "phone number": "456-789-0123",
-}
+// console.log(restaurant)
+
+// restaurant.socialMedia = {
+//   instagram: "@gigispizzagram",
+//   twitter: "@gigispizza",
+//   tiktok: "@gigispizzaontiktok",
+// }
+
+// delete restaurant.staff.manager
+
+// restaurant.staff.bartender = {
+//   name: "Pamella",
+//   "phone number": "456-789-0123",
+// }
 
 // restaurant.staff.chef = { name: "Pedro" }
 // restaurant.staff.chef.lastName = "Abruzzi"
