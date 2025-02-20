@@ -42,7 +42,7 @@ const states = {
     }
   },
 
-  battle(state1, state2) {
+  battle: function (state1, state2) {
     if (this[state1].surrende) {
       console.log(this[state1].surrender())
       console.log(`${this[state2].name} wins`)

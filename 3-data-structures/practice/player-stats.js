@@ -6,6 +6,14 @@ class Monster {
   }
 }
 
+class Troll extends Monster {
+  constructor(name, level) {
+    super("troll", level)
+    this.name = name
+    this.mood = "grumpy"
+  }
+}
+
 class Player {
   constructor(name) {
     this.name = name
@@ -27,6 +35,59 @@ class Player {
       count += this.inventory[inventoryKey].length
     }
     return count
+  }
+
+  largestInventoryCategory() {
+    let itemCount = 0
+    let winningKey
+
+    for (let inventoryKey in this.inventory) {
+      const len = this.inventory[inventoryKey].length
+      if (len > itemCount) {
+        itemCount = len
+        winningKey = inventoryKey
+      }
+    }
+
+    return winningKey
+  }
+
+  #display(message, data) {
+    console.log("\n==============")
+    console.log(message)
+    console.log(data)
+    console.log("==============\n")
+  }
+
+  #makeInventoryList() {
+    let displayData = ""
+    const keys = Object.keys(this.inventory)
+    keys.forEach(
+      (key) => (displayData += `\t${key}: ${this.inventory[key].join(", ")}\n`)
+    )
+    return displayData
+  }
+
+  displayPlayerStats() {
+    let displayData = ""
+    for (let key in this) {
+      if (key === "inventory") {
+        displayData += "Inventory: \n"
+        displayData += this.#makeInventoryList()
+      } else {
+        displayData += `${key}: ${this[key]}\n`
+      }
+    }
+    this.#display("Player stats:", displayData)
+  }
+
+  displayInventory() {
+    let displayData = this.#makeInventoryList()
+    displayData += `\n${this.name} has ${
+      this.inventorySlots - this.#countInventory()
+    } slots available`
+
+    this.#display(`${this.name} is carrying: `, displayData)
   }
 
   pickUpItem(itemName, itemType) {
@@ -73,10 +134,24 @@ carl.pickUpItem("health elixir", "potion")
 carl.pickUpItem("poison", "potion")
 
 carl.dropItem("health elixir", "potion")
+carl.pickUpItem("poison", "potion")
 carl.gold += 100
 
-const troll = new Monster("troll", 1)
+const chad = new Troll("Chad", 1)
 const spider = new Monster("spider", 2)
 
-// carl.battle(troll)
-carl.battle(spider)
+// carl.battle(chad)
+// carl.battle(spider)
+
+// console.log(chad instanceof Troll) // true
+// console.log(chad instanceof Monster) // true
+// console.log(chad instanceof Object) // true
+// console.log(chad instanceof Player) // false
+
+// TODO: ??
+// console.log(chad.hasOwnProperty("name")) // true
+// console.log(chad.hasOwnProperty("hearts")) // true
+
+carl.displayInventory()
+// carl.largestInventoryCategory()
+// carl.displayPlayerStats()
