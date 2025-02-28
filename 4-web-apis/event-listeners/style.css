@@ -1,0 +1,13 @@
+#box {
+  border: 10px solid black;
+  width: 5em;
+  height: 5em;
+}
+
+.red-box {
+  background-color: red;
+}
+
+.see-through {
+  opacity: 50%;
+}

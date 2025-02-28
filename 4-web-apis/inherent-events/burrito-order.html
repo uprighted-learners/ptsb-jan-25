@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Order a Burrito!</h1>
+    <form
+      action="https://webhook.site/d61a61a6-b81f-419f-8689-d89e4a4513ac"
+      method="post"
+    >
+      <div>
+        <label for="first-name">First Name: </label>
+        <input type="text" name="firstName" id="first-name" />
+      </div>
+      <h3>Beans</h3>
+      <div>
+        <input type="radio" value="pinto" name="beans" id="pinto" />
+        <label for="pinto">Pinto beans</label>
+      </div>
+      <div>
+        <input type="radio" value="black" name="beans" id="black" />
+        <label for="black">Black beans</label>
+      </div>
+      <div>
+        <input type="radio" value="both" name="beans" id="both" />
+        <label for="both">Both</label>
+      </div>
+
+      <h3>Rice</h3>
+      <div>
+        <input type="radio" value="white" name="rice" id="white" />
+        <label for="white">White rice</label>
+      </div>
+      <div>
+        <input type="radio" value="brown" name="rice" id="brown" />
+        <label for="brown">Brown rice</label>
+      </div>
+
+      <h3>Filling</h3>
+      <div>
+        <input type="radio" value="carnitas" name="fillings" id="carnitas" />
+        <label for="carnitas">Carnitas</label>
+      </div>
+      <div>
+        <input type="radio" value="al-pastor" name="fillings" id="al-pastor" />
+        <label for="al-pastor">Al pastor</label>
+      </div>
+      <div>
+        <input type="radio" value="jackfruit" name="fillings" id="jackfruit" />
+        <label for="jackfruit">Jackfruit</label>
+      </div>
+
+      <h3>Toppings</h3>
+      <div>
+        <input type="checkbox" name="cilantro" id="cilantro" />
+        <label for="cilantro">Cilantro</label>
+      </div>
+      <div>
+        <input type="checkbox" name="corn" id="corn" />
+        <label for="corn">Corn</label>
+      </div>
+      <div>
+        <input
+          type="checkbox"
+          value="sour-cream"
+          name="sour-cream"
+          id="sour-cream"
+        />
+        <label for="sour-cream">Sour Cream</label>
+      </div>
+
+      <hr />
+      <input type="submit" value="Place burrito order" />
+    </form>
+  </body>
+</html>
