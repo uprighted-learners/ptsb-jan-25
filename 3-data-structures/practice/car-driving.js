@@ -56,8 +56,8 @@ let currentState = park
 
 // 2. lookup table
 const stateLookup = {
-  park,
-  drive,
+  park: park, // instance of class CarState
+  drive: [1, 2, 3],
   neutral,
   reverse,
   brakingMode,

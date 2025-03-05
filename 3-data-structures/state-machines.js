@@ -22,7 +22,7 @@ More examples of state
 - cooking (raw to cooked to burned)
 - TV volume (how you travel through the numbers depends on the system)
 - government contracts, employee contracts
-- liquid, solid, gas
+- solid, liquid, gas
 - an online purchase - submitted, received, processing, shipped, delivered
 - a game - level 1, level 2, level 3, final boss, completed
 - a user in a game - (health, inventory, location), ex (full health, 1 potion, the forest), or (50% health, a shield and a staff, the desert) 
