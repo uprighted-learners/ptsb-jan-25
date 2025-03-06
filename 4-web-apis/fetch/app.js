@@ -1,12 +1,12 @@
 const contents = document.getElementById("contents")
 const contents2 = document.getElementById("contents2")
 
+// make a fetch and then handle the response (a promise) using resolvers
 // fetch("https://api.kanye.rest")
-//   .then((res) => {
-//     return res.json()
-//   })
+//   .then((res) => res.json())
 //   .then((data) => (contents.innerText = data.quote))
 
+// // do the exact same thing, with async/await instead of resolvers
 // const getQuote = async () => {
 //   const response = await fetch("https://api.kanye.rest")
 //   const data = await response.json()
@@ -17,11 +17,14 @@ const contents2 = document.getElementById("contents2")
 
 fetch("https://jsonplaceholder.typicode.com/todos?userId=4")
   .then((res) => {
-    console.log(res)
+    if (!res.ok) {
+      throw new Error("Bad HTTP Response")
+      console.log("bad http response")
+    }
     return res.json()
   })
-  .then((data) => {
-    data.forEach((todo) => {
+  .then((json) => {
+    json.forEach((todo) => {
       const item = document.createElement("li")
       item.textContent = todo.title
       if (todo.completed) {
@@ -30,19 +33,36 @@ fetch("https://jsonplaceholder.typicode.com/todos?userId=4")
       contents.append(item)
     })
   })
+  .catch((err) => {
+    contents.innerText = `something went wrong: ${err}`
+  })
+  .finally(() => console.log("it's over"))
 
 const getTodos = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/todos?userId=4")
-  const json = await res.json()
+  try {
+    const res = await fetch(
+      "https://jsonplaceholder.typicode.com/todo?userId=4"
+    )
 
-  json.forEach((todo) => {
-    const item = document.createElement("li")
-    item.textContent = todo.title
-    if (todo.completed) {
-      item.style.textDecoration = "line-through"
+    if (!res.ok) {
+      throw new Error("Bad HTTP Response 2")
     }
-    contents.append(item)
-  })
+
+    const json = await res.json()
+
+    json.forEach((todo) => {
+      const item = document.createElement("li")
+      item.textContent = todo.title
+      if (todo.completed) {
+        item.style.textDecoration = "line-through"
+      }
+      contents.append(item)
+    })
+  } catch (err) {
+    contents2.innerText = `something went wrong: ${err}`
+  } finally {
+    console.log("it's over 2")
+  }
 }
 
 getTodos()
