@@ -1,10 +1,10 @@
 {
-  "name": "express-routes",
+  "name": "candy-catalog",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
-    "dev": "node --watch crud.js"
+    "dev": "node --watch app.js"
   },
   "keywords": [],
   "author": "",

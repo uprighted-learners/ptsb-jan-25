@@ -17,8 +17,8 @@ The HTTP method reflects what kind of information we're sending or what we expec
 The server decides how to handle our request, depending on the method
 
 - GET - request data
-- POST - send data
-- PUT - (we'll come back to how this is different)
+- POST - send data, includes a body
+- PUT - like post, but idempotent - you can make the same request over and over again
 - DELETE - delete data
 - OPTIONS
 - more weird ones
