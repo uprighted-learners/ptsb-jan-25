@@ -1,89 +1,82 @@
 import express from "express"
+import { dirname, join } from "path"
+import { fileURLToPath } from "url"
 const router = express.Router()
+import fs from "fs"
 
-const candy = [
-  {
-    id: 1,
-    name: "skittles",
-    rating: 5,
-  },
-  {
-    id: 2,
-    name: "Idaho Spud",
-    rating: 1,
-  },
-  {
-    id: 3,
-    name: "Sour Patch Kids",
-    rating: 8,
-  },
-]
+const CANDY_PATH = join(
+  dirname(fileURLToPath(import.meta.url)),
+  "../candy.json"
+)
 
 // get all
 router.get("/", (req, res) => {
-  res.send(candy)
+  const data = fs.readFileSync(CANDY_PATH)
+  res.send(data)
 })
 
 router.get("/best-candy", (req, res) => {
-  let max = 0
-  let result
-  for (let c of candy) {
-    if (c.rating > max) {
-      max = c.rating
-      result = c
-    }
-  }
-  //   res.send(result)
-  //   let val
-  //   if (condition) {
-  //     val = a
-  //   } else {
-  //     val = b
-  //   }
+  const data = fs.readFileSync(CANDY_PATH)
+  const candy = JSON.parse(data)
 
-  //   // ternary operator
-  //   val = condition ? a : b
-
-  const result2 = candy.reduce((highest, current) => {
+  const result1 = candy.reduce((highest, current) => {
     return current.rating > highest.rating ? current : highest
   })
-  res.send(result2)
+  res.send(result1)
 })
 
 // get one by id
 router.get("/:candyId", (req, res) => {
+  const data = fs.readFileSync(CANDY_PATH)
+  const candy = JSON.parse(data)
+
   const thisCandy = candy.find((c) => c.id == req.params.candyId)
   res.send(thisCandy)
 })
 
 // update rating
 router.put("/:candyId", (req, res) => {
+  const data = fs.readFileSync(CANDY_PATH)
+  const candy = JSON.parse(data)
+
   const { rating } = req.body
   const thisCandy = candy.find((c) => c.id == req.params.candyId)
   const index = candy.findIndex((c) => c.id == req.params.candyId)
   thisCandy.rating = rating
   candy[index] = thisCandy
+
+  fs.writeFileSync(CANDY_PATH, JSON.stringify(candy))
+
   res.send(`updated item ${thisCandy.name}`)
-  console.log(candy)
 })
 
 // add a new candy
 router.post("/", (req, res) => {
+  const data = fs.readFileSync(CANDY_PATH)
+  const candy = JSON.parse(data)
+
   const { id, name, rating } = req.body
   const newCandy = { name }
   if (rating) newCandy.rating = rating
   if (id) newCandy.id = id
 
   candy.push(newCandy)
+
+  fs.writeFileSync(CANDY_PATH, JSON.stringify(candy))
+
   res.send(`Added ${name}`)
-  console.log(candy)
 })
 
 router.delete("/:candyId", (req, res) => {
+  const data = fs.readFileSync(CANDY_PATH)
+  const candy = JSON.parse(data)
+
   const index = candy.findIndex((c) => c.id == req.params.candyId)
   candy.splice(index, 1)
+
+  fs.writeFileSync(CANDY_PATH, JSON.stringify(candy))
+
   res.send(`deleted id ${req.params.candyId}`)
-  console.log(candy)
 })
 
 export default router
