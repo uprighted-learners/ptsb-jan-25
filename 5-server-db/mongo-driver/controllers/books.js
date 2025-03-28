@@ -34,24 +34,24 @@ router.get("/:bookId", async (req, res) => {
   res.send(book)
 })
 
-router.post("/", async (req, res) => {
-  await getCollection().insertOne(req.body)
-  res.send("success")
-})
+// router.post("/", async (req, res) => {
+//   await getCollection().insertOne(req.body)
+//   res.send("success")
+// })
 
 // This endpoint does the same thing as above, but more safely
-// router.post("/", async (req, res) => {
-//   // add a new entry, only if the fields are included
-//   if (req.body.title && req.body.author) {
-//     // "insert" means "add a new document"
-//     const result = await getCollection().insertOne({
-//       title: req.body.title || "untitled",
-//       author: req.body.author || "unkown author",
-//     })
-//   } else {
-//     res.status(422).send("invalid entry")
-//   }
-//   res.send(`added ${req.body.title} by ${req.body.author}`)
-// })
+router.post("/", async (req, res) => {
+  // add a new entry, only if the fields are included
+  if (req.body.title && req.body.author) {
+    // "insert" means "add a new document"
+    const result = await getCollection().insertOne({
+      title: req.body.title || "untitled",
+      author: req.body.author || "unkown author",
+    })
+  } else {
+    res.status(422).send("invalid entry")
+  }
+  res.send(`added ${req.body.title} by ${req.body.author}`)
+})
 
 export default router
