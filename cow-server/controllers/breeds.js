@@ -11,14 +11,14 @@ router.get("/", async (req, res) => {
 })
 
 // add a cow
-router.post("/", async (req, res) => {
-  try {
-    const cow = new Breed(req.body)
-    await cow.save()
-    res.send("breed added")
-  } catch (err) {
-    res.status(422).send(err.message)
-  }
-})
+// router.post("/", async (req, res) => {
+//   try {
+//     const cow = new Breed(req.body)
+//     await cow.save()
+//     res.send("breed added")
+//   } catch (err) {
+//     res.status(422).send(err.message)
+//   }
+// })
 
 export default router

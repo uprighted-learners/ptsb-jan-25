@@ -3,6 +3,7 @@ import { mongoose } from "../db.js"
 // notes:
 // keep track of a cow's parentage?
 // and all health info (inseminations/pregnancies/births, vaccines, etc)
+// TODO: give each cow a user?
 
 const Cow = new mongoose.Schema({
   name: {
