@@ -1,7 +1,10 @@
+import { useState } from "react"
 import Bubble from "./components/Bubble"
 import "./App.css"
 
 function App() {
+  const [backgroundColor, setBackgroundColor] = useState()
+
   const colors = [
     "red",
     "orange",
@@ -12,18 +15,12 @@ function App() {
     "purple",
   ]
 
-  let backgroundColor = "red"
-  const changeColor = (color) => {
-    console.log("parent component:", color)
-    backgroundColor = color
-  }
-
   return (
     <>
       <div id="color-panel" style={{ backgroundColor }}></div>
       <div id="bubble-wrapper">
         {colors.map((c) => (
-          <Bubble color={c} key={c} update={changeColor} />
+          <Bubble color={c} key={c} update={setBackgroundColor} />
         ))}
       </div>
     </>
