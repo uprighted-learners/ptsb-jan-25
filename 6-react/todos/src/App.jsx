@@ -1,29 +1,18 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import TodoItem from "../components/TodoItem"
 import "./App.css"
 
 function App() {
-  const starterTodos = [
-    {
-      id: 1,
-      title: "walk the fish",
-      completed: false,
-    },
-    {
-      id: 2,
-      title: "mow the dishes",
-      completed: false,
-    },
-    {
-      id: 3,
-      title: "mop the laundry",
-      completed: true,
-    },
-  ]
+  const [todos, setTodos] = useState([])
 
-  const [todos, setTodos] = useState(starterTodos)
+  useEffect(() => {
+    // console.log("useEffect!")
 
-  console.log("App renders")
+    fetch(`https://jsonplaceholder.typicode.com/todos?userId=1`)
+      .then((res) => res.json())
+      .then((data) => setTodos(data))
+      .catch((err) => console.warn(err))
+  }, [])
 
   return (
     <>
