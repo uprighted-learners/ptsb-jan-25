@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import TodoItem from "../components/TodoItem"
 import "./App.css"
 
+export const CountContext = createContext(0)
+
 function App() {
   const [todos, setTodos] = useState([])
+  const [changedItemCount, setChangedItemCount] = useState(0)
 
   useEffect(() => {
     // console.log("useEffect!")
@@ -15,7 +18,8 @@ function App() {
   }, [])
 
   return (
-    <>
+    <CountContext.Provider value={{ changedItemCount, setChangedItemCount }}>
+      <h4>In this session you have completed {changedItemCount} items</h4>
       {todos.map((item) => (
         <TodoItem
           item={item}
@@ -24,7 +28,7 @@ function App() {
           todos={todos}
         />
       ))}
-    </>
+    </CountContext.Provider>
   )
 }
 
