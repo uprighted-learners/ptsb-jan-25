@@ -6,7 +6,7 @@ const router = express.Router()
 
 // get all
 router.get("/", async (req, res) => {
-  console.log(req.user)
+  // console.log(req.user)
   // TODO maybe if we want to: filter cows by cow belonging to user
 
   const cows = await Cow.find()

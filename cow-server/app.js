@@ -1,17 +1,19 @@
 import "dotenv/config"
 import express from "express"
+import cors from "cors"
 import { dbConnect } from "./db.js"
 import tokenValidation from "./middlewares/tokenValidation.js"
 const app = express()
 
 const PORT = process.env.SERVER_PORT
 
+app.use(cors())
 app.use(express.json())
 
 import router from "./controllers/cows.js"
 import breedsRouter from "./controllers/breeds.js"
 import authRouter from "./controllers/auth.js"
-app.use("/cows", tokenValidation, router)
+app.use("/cows", router)
 app.use("/breeds", breedsRouter)
 app.use("/auth", authRouter)
 

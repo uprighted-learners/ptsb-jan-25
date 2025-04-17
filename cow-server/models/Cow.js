@@ -4,6 +4,7 @@ import { mongoose } from "../db.js"
 // keep track of a cow's parentage?
 // and all health info (inseminations/pregnancies/births, vaccines, etc)
 // TODO: give each cow a user?
+// TODO: what happens if you sell a cow
 
 const Cow = new mongoose.Schema({
   name: {
@@ -14,6 +15,7 @@ const Cow = new mongoose.Schema({
   },
   sex: {
     type: String,
+    // required: true, // TODO: is this implied by the enum?
     enum: ["M", "F"],
   },
   castratedDate: {
@@ -30,7 +32,6 @@ const Cow = new mongoose.Schema({
     max: [Date.now, "Cows cannot die in the future"],
   },
   breed: {
-    // type: mongoose.ObjectId, ???
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: "Breed",

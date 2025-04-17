@@ -1,0 +1,36 @@
+/* 
+brown: 432818
+beige: #BB9457
+whitish: f8f5e5
+blackish: 221c17
+pantone red: E71D36
+*/
+
+body {
+  background-color: #bb9457;
+  color: #221c17;
+}
+
+.cow-card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 3rem;
+  justify-content: center;
+}
+
+.cow-card {
+  background-color: #f8f5e5;
+  border-radius: 8px;
+  height: 22rem;
+  width: 13rem;
+  padding: 1rem;
+}
+
+.cow-image {
+  width: 100%;
+}
+
+.cow-name {
+  text-align: center;
+}

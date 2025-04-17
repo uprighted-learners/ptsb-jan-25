@@ -1,6 +1,6 @@
 import { mongoose } from "../db.js"
 
-const PURPOSES = ["meat", "dairy", "show", "pet", "draught"]
+const PURPOSES = ["meat", "dairy", "draught", "show", "pet"]
 
 const Breed = new mongoose.Schema({
   name: {
