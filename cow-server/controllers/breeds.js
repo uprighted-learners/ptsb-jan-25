@@ -6,8 +6,22 @@ const router = express.Router()
 
 // get all
 router.get("/", async (req, res) => {
-  const cows = await Breed.find()
-  res.send(cows)
+  const breeds = await Breed.find()
+  res.send(breeds)
+})
+
+// get one
+router.get("/:id", async (req, res) => {
+  if (mongoose.Types.ObjectId.isValid(req.params.id)) {
+    const breed = await Breed.findOne({ _id: req.params.id })
+    if (breed) {
+      res.send(breed)
+    } else {
+      res.status(404).send("Breed not found")
+    }
+  } else {
+    res.status(400).send("Invalid id")
+  }
 })
 
 // add a cow

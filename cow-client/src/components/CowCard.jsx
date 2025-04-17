@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react"
 import CowDatum from "./CowDatum"
-import CowDateDatum from "./CowDateDatum"
 
 function CowCard({ cow }) {
+  const [breed, setBreed] = useState({})
+
   let weightField
   if (cow.weight) {
     weightField = (
@@ -10,6 +12,19 @@ function CowCard({ cow }) {
       </div>
     )
   }
+
+  useEffect(() => {
+    fetch(`http://localhost:4000/breeds/${cow.breed}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error()
+        }
+        return res.json()
+      })
+      .then((data) => setBreed(data))
+      .catch((err) => setBreed({ name: "Breed not specified" }))
+      .finally(() => console.log(cow.name, breed))
+  }, [])
 
   return (
     <>
@@ -20,15 +35,15 @@ function CowCard({ cow }) {
           alt=""
         />
         <h3 className="cow-name">{cow.name}</h3>
-        <CowDatum keyTitle="breed" value={cow.breed} />
-        <CowDateDatum keyTitle="DOB" value={cow.dob} />
+        <CowDatum keyTitle="breed" value={breed.name} />
+        <CowDatum keyTitle="DOB" value={cow.dob} />
         <CowDatum keyTitle="sex" value={cow.sex} />
         <CowDatum keyTitle="castrated on" value={cow.castratedDate} />
         <CowDatum keyTitle="died on" value={cow.deceasedDate} />
         <CowDatum keyTitle="appearance" value={cow.appearance} />
         {weightField}
 
-        {/* TODO: add name of breed and link to breed page */}
+        {/* TODO: add link to breed page */}
       </div>
     </>
   )
