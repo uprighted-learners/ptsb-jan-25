@@ -1,26 +1,26 @@
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom"
 import { useEffect, useState } from "react"
 import "./App.css"
-import CowCard from "./components/CowCard"
+
+import BreedInfo from "./pages/BreedInfo"
+import Dashboard from "./pages/Dashboard"
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/">
+      <Route path="/" element={<Dashboard />}></Route>
+      <Route path="breed/:breedId" element={<BreedInfo />}></Route>
+    </Route>
+  )
+)
 
 function App() {
-  const [allCows, setAllCows] = useState([])
-
-  useEffect(() => {
-    fetch("http://localhost:4000/cows")
-      .then((res) => res.json())
-      .then((data) => setAllCows(data))
-      .catch((err) => console.warn(err))
-  }, [])
-
-  return (
-    <>
-      <div className="cow-card-wrapper">
-        {allCows.map((cow) => (
-          <CowCard key={cow._id} cow={cow} />
-        ))}
-      </div>
-    </>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default App
