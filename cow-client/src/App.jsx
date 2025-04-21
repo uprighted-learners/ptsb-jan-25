@@ -15,6 +15,7 @@ const router = createBrowserRouter(
     <Route path="/">
       <Route path="/" element={<Dashboard />}></Route>
       <Route path="breed/:breedId" element={<BreedInfo />}></Route>
+      <Route path="404" element="nice try bro" />
     </Route>
   )
 )

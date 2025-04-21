@@ -22,7 +22,7 @@ function CowCard({ cow }) {
         return res.json()
       })
       .then((data) => setBreed(data))
-      .catch((err) => setBreed({ name: "Breed not specified" }))
+      .catch((err) => setBreed({ name: null }))
       .finally(() => console.log(cow.name, breed))
   }, [])
 
@@ -35,15 +35,17 @@ function CowCard({ cow }) {
           alt=""
         />
         <h3 className="cow-name">{cow.name}</h3>
-        <CowDatum keyTitle="breed" value={breed.name} />
+        <CowDatum
+          keyTitle="breed"
+          value={breed.name}
+          url={`breed/${breed._id}`}
+        />
         <CowDatum keyTitle="DOB" value={cow.dob} />
         <CowDatum keyTitle="sex" value={cow.sex} />
         <CowDatum keyTitle="castrated on" value={cow.castratedDate} />
         <CowDatum keyTitle="died on" value={cow.deceasedDate} />
         <CowDatum keyTitle="appearance" value={cow.appearance} />
         {weightField}
-
-        {/* TODO: add link to breed page */}
       </div>
     </>
   )

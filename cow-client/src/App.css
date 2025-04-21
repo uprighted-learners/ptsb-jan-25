@@ -34,3 +34,7 @@ body {
 .cow-name {
   text-align: center;
 }
+
+.breed-image {
+  max-width: 70%;
+}

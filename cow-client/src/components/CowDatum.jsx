@@ -1,10 +1,11 @@
-function CowDatum({ keyTitle, value }) {
+function CowDatum({ keyTitle, value, url }) {
   if (value) {
     const date = new Date(value)
-    const output = isNaN(date.getTime()) ? value : date.toLocaleDateString()
+    // let output = isNaN(date.getTime()) ? value : date.toLocaleDateString()
 
-    // let output = value
-    // if (!isNaN(date.getTime())) output = date.toLocaleDateString()
+    let output = value
+    if (!isNaN(date.getTime())) output = date.toLocaleDateString()
+    if (url) output = <a href={url}>{output}</a>
 
     return (
       <div className="cow-datum">
