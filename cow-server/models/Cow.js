@@ -15,7 +15,7 @@ const Cow = new mongoose.Schema({
   },
   sex: {
     type: String,
-    // required: true, // TODO: is this implied by the enum?
+    required: true,
     enum: ["M", "F"],
   },
   castratedDate: {

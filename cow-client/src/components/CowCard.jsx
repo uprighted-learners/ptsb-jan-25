@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import CowDatum from "./CowDatum"
 
+// TODO: should we be passing breeds in as a prop?
 function CowCard({ cow }) {
   const [breed, setBreed] = useState({})
 
@@ -23,31 +24,29 @@ function CowCard({ cow }) {
       })
       .then((data) => setBreed(data))
       .catch((err) => setBreed({ name: null }))
-      .finally(() => console.log(cow.name, breed))
+    // .finally(() => console.log(cow.name, breed))
   }, [])
 
   return (
-    <>
-      <div className="cow-card">
-        <img
-          className="cow-image"
-          src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Cow_%28Fleckvieh_breed%29_Oeschinensee_Slaunger_2009-07-07.jpg"
-          alt=""
-        />
-        <h3 className="cow-name">{cow.name}</h3>
-        <CowDatum
-          keyTitle="breed"
-          value={breed.name}
-          url={`breed/${breed._id}`}
-        />
-        <CowDatum keyTitle="DOB" value={cow.dob} />
-        <CowDatum keyTitle="sex" value={cow.sex} />
-        <CowDatum keyTitle="castrated on" value={cow.castratedDate} />
-        <CowDatum keyTitle="died on" value={cow.deceasedDate} />
-        <CowDatum keyTitle="appearance" value={cow.appearance} />
-        {weightField}
-      </div>
-    </>
+    <div className="cow-card">
+      <img
+        className="cow-image"
+        src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Cow_%28Fleckvieh_breed%29_Oeschinensee_Slaunger_2009-07-07.jpg"
+        alt=""
+      />
+      <h3 className="cow-name">{cow.name}</h3>
+      <CowDatum
+        keyTitle="breed"
+        value={breed.name}
+        url={`breed/${breed._id}`}
+      />
+      <CowDatum keyTitle="DOB" value={cow.dob} />
+      <CowDatum keyTitle="sex" value={cow.sex} />
+      <CowDatum keyTitle="castrated on" value={cow.castratedDate} />
+      <CowDatum keyTitle="died on" value={cow.deceasedDate} />
+      <CowDatum keyTitle="appearance" value={cow.appearance} />
+      {weightField}
+    </div>
   )
 }
 

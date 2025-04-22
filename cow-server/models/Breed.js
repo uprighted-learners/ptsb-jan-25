@@ -7,6 +7,8 @@ const Breed = new mongoose.Schema({
     type: String,
     required: true,
     maxLength: 200,
+    // TODO: Danny figure how to enforce uniqueness
+    unique: true,
   },
   species: {
     type: String,

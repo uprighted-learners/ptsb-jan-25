@@ -13,7 +13,8 @@ body {
 
 .cow-card-wrapper {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
+  flex-direction: row-reverse;
   gap: 1.5rem;
   padding: 3rem;
   justify-content: center;
