@@ -39,3 +39,22 @@ body {
 .breed-image {
   max-width: 70%;
 }
+
+/* TODO: anchor to bottom of card?? */
+.edit-icon {
+  text-align: right;
+}
+
+.cow-edit-card {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.cow-edit-contents {
+  background-color: #f8f5e5;
+  border-radius: 8px;
+  height: 30rem;
+  width: 20rem;
+  padding: 1rem;
+}

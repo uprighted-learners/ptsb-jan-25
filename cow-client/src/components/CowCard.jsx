@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import CowDatum from "./CowDatum"
 
 // TODO: should we be passing breeds in as a prop?
-function CowCard({ cow }) {
+function CowCard({ cow, setEditCowId }) {
   const [breed, setBreed] = useState({})
 
   let weightField
@@ -46,6 +46,9 @@ function CowCard({ cow }) {
       <CowDatum keyTitle="died on" value={cow.deceasedDate} />
       <CowDatum keyTitle="appearance" value={cow.appearance} />
       {weightField}
+      <div className="edit-icon" onClick={() => setEditCowId(cow._id)}>
+        ✏️
+      </div>
     </div>
   )
 }
