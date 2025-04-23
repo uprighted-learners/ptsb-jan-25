@@ -1,4 +1,6 @@
 function CowEditCard({ closeEditCard }) {
+  // TODO: write better CSS for this
+  // TODO: add actual contents
   return (
     <div className="cow-edit-card">
       <div className="cow-edit-contents">

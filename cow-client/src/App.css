@@ -58,3 +58,26 @@ body {
   width: 20rem;
   padding: 1rem;
 }
+
+.login-link {
+  text-align: end;
+  padding-right: 1rem;
+}
+
+#auth-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+}
+
+#auth-input-wrapper button {
+  width: 5rem;
+}
+
+.auth-error {
+  color: #e71d36;
+  background-color: #f8f5e5;
+  border-radius: 5px;
+  padding: 3px;
+  margin: 1rem;
+}

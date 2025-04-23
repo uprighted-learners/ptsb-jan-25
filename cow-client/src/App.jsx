@@ -9,6 +9,7 @@ import "./App.css"
 
 import BreedInfo from "./pages/BreedInfo"
 import Dashboard from "./pages/Dashboard"
+import Login from "./pages/Login"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<Dashboard />}></Route>
       <Route path="breed/:breedId" element={<BreedInfo />}></Route>
       <Route path="404" element="nice try bro" />
+      <Route path="login" element={<Login />} />
     </Route>
   )
 )

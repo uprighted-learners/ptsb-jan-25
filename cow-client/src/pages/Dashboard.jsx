@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import CowCard from "../components/CowCard"
 import AddCowCard from "../components/AddCowCard"
 import CowEditCard from "../components/CowEditCard"
@@ -20,6 +21,9 @@ function Dashboard() {
 
   return (
     <>
+      <div className="login-link">
+        <Link to="login">Login / Register</Link>
+      </div>
       {editCowId && <CowEditCard closeEditCard={() => setEditCowId("")} />}
       <div className="cow-card-wrapper">
         <AddCowCard refreshCows={getAllCows} />

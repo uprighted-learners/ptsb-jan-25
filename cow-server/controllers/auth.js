@@ -23,12 +23,12 @@ router.post("/login", async (req, res) => {
   // find a user with a matching email address
   const user = await User.findOne({ email })
   if (!user) {
-    res.send("unknown username") // TODO: improve this
+    res.send({ message: "unknown username" })
   } else {
     // check whether the password matches our saved, hased one
     const verified = await bcrypt.compare(password, user.password)
     if (!verified) {
-      res.send("incorrect password") // TODO: improve this
+      res.send({ message: "incorrect password" })
     } else {
       const token = jwt.sign({ userId: user._id }, process.env.JWT_KEY, {
         expiresIn: 60 * 60 * 24,
