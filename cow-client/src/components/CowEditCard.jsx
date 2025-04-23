@@ -1,7 +1,9 @@
-function CowEditCard() {
+function CowEditCard({ closeEditCard }) {
   return (
     <div className="cow-edit-card">
-      <div className="cow-edit-contents">??</div>
+      <div className="cow-edit-contents">
+        <span onClick={closeEditCard}>X</span>
+      </div>
     </div>
   )
 }

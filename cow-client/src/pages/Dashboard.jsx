@@ -20,15 +20,14 @@ function Dashboard() {
 
   return (
     <>
+      {editCowId && <CowEditCard closeEditCard={() => setEditCowId("")} />}
       <div className="cow-card-wrapper">
-        {allCows.map((cow) =>
-          editCowId === cow._id ? (
-            <CowEditCard />
-          ) : (
-            <CowCard key={cow._id} cow={cow} setEditCowId={setEditCowId} />
-          )
-        )}
         <AddCowCard refreshCows={getAllCows} />
+        {allCows
+          .map((cow) => (
+            <CowCard key={cow._id} cow={cow} setEditCowId={setEditCowId} />
+          ))
+          .reverse()}
       </div>
     </>
   )
