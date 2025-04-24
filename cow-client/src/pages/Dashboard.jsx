@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { UserContext } from "../App"
 import CowCard from "../components/CowCard"
 import AddCowCard from "../components/AddCowCard"
 import CowEditCard from "../components/CowEditCard"
@@ -7,6 +8,8 @@ import CowEditCard from "../components/CowEditCard"
 function Dashboard() {
   const [allCows, setAllCows] = useState([])
   const [editCowId, setEditCowId] = useState()
+
+  const { token, setToken } = useContext(UserContext)
 
   const getAllCows = () => {
     fetch("http://localhost:4000/cows")
@@ -22,7 +25,17 @@ function Dashboard() {
   return (
     <>
       <div className="login-link">
-        <Link to="login">Login / Register</Link>
+        {token ? (
+          <button
+            onClick={() => {
+              setToken("")
+            }}
+          >
+            Logout
+          </button>
+        ) : (
+          <Link to="login">Login / Register</Link>
+        )}
       </div>
       {editCowId && <CowEditCard closeEditCard={() => setEditCowId("")} />}
       <div className="cow-card-wrapper">

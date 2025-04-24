@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { UserContext } from "../App"
 
 function Login() {
   const [email, setEmail] = useState("")
@@ -7,6 +8,7 @@ function Login() {
   const [authError, setAuthError] = useState("")
 
   const nav = useNavigate()
+  const { setToken } = useContext(UserContext)
 
   const handleLoginSubmit = () => {
     fetch(`http://localhost:4000/auth/login`, {
@@ -26,6 +28,7 @@ function Login() {
       )
       .then((data) => {
         if (data.token) {
+          setToken(data.token)
           nav("/")
         } else {
           setAuthError(data.message)
