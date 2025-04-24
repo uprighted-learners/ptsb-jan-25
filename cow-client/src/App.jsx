@@ -5,7 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom"
 import { jwtDecode } from "jwt-decode"
-import { useEffect, useState } from "react"
+import { createContext, useState } from "react"
 import "./App.css"
 
 import BreedInfo from "./pages/BreedInfo"
@@ -44,11 +44,17 @@ const getUserFromToken = () => {
     return null
   }
 }
+export const UserContext = createContext(null)
 
 function App() {
   const [user, setUser] = useState(getUserFromToken())
+  const [token, setToken] = useState(getCookieValue("auth_token"))
 
-  return <RouterProvider router={router} />
+  return (
+    <UserContext.Provider value={{ user, token, setToken }}>
+      <RouterProvider router={router} />
+    </UserContext.Provider>
+  )
 }
 
 export default App

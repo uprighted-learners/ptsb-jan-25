@@ -1,6 +1,7 @@
 import express from "express"
 import Cow from "../models/Cow.js"
 import { mongoose } from "../db.js"
+import tokenValidation from "../middlewares/tokenValidation.js"
 
 const router = express.Router()
 
@@ -55,7 +56,7 @@ router.get("/:cowId", async (req, res) => {
 })
 
 // add a cow
-router.post("/", async (req, res) => {
+router.post("/", tokenValidation, async (req, res) => {
   try {
     const cow = new Cow(req.body)
     await cow.save()

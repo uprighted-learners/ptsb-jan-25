@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { UserContext } from "../App"
 
 function AddCowCard({ refreshCows }) {
   const [breeds, setBreeds] = useState([])
@@ -7,6 +8,8 @@ function AddCowCard({ refreshCows }) {
   const [dob, setDob] = useState()
   const [selectedBreed, setSelectedBreed] = useState("")
   const [appearance, setAppearance] = useState("")
+
+  const { token } = useContext(UserContext)
 
   useEffect(() => {
     fetch(`http://localhost:4000/breeds/`)
@@ -27,20 +30,23 @@ function AddCowCard({ refreshCows }) {
     fetch("http://localhost:4000/cows/", {
       method: "POST",
       body: JSON.stringify({ name, sex, dob, breed: breed._id, appearance }),
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", authorization: token },
     }).then((res) => {
-      refreshCows()
-      setName("")
-      setSex("")
-      setDob("")
-      setSelectedBreed("")
-      setAppearance("")
+      if (res.ok) {
+        refreshCows()
+        setName("")
+        setSex("")
+        setDob("")
+        setSelectedBreed("")
+        setAppearance("")
+      } else {
+        // TODO: surface failure to user
+      }
     })
   }
 
   return (
     <div className="cow-card">
-      {sex}
       <div>
         <label htmlFor="name">Name: </label>
         <input
