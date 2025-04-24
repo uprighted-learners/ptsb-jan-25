@@ -12,7 +12,6 @@ router.post("/register", async (req, res) => {
     email,
     password: bcrypt.hashSync(password, Number(process.env.SALT)),
   })
-  console.log(newUser)
   await newUser.save()
   res.send(`new user ${newUser._id} created`)
 })
