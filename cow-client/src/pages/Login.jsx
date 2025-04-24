@@ -13,6 +13,7 @@ function Login() {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
+      credentials: "include",
     })
       .then(
         (res) => {

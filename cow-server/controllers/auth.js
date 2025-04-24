@@ -30,14 +30,20 @@ router.post("/login", async (req, res) => {
     if (!verified) {
       res.send({ message: "incorrect password" })
     } else {
-      const token = jwt.sign({ userId: user._id }, process.env.JWT_KEY, {
+      const token = jwt.sign({ user: user }, process.env.JWT_KEY, {
         expiresIn: 60 * 60 * 24,
+      })
+
+      res.cookie("auth_token", token, {
+        maxAge: 1000 * 60 * 60 * 24,
+        // NOTE: change this when you deploy!
+        sameSite: "none",
+        secure: true,
       })
 
       res.send({
         message: "user verified",
         token,
-        user,
       })
     }
   }

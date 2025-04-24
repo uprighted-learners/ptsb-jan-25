@@ -4,6 +4,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom"
+import { jwtDecode } from "jwt-decode"
 import { useEffect, useState } from "react"
 import "./App.css"
 
@@ -22,7 +23,31 @@ const router = createBrowserRouter(
   )
 )
 
+const getCookieValue = (keyName) => {
+  try {
+    const value = document.cookie
+      .split(";")
+      .find((s) => s.includes(keyName))
+      .split("=")[1]
+    return value
+  } catch {
+    return null
+  }
+}
+
+const getUserFromToken = () => {
+  try {
+    const token = getCookieValue("auth_token")
+    const payload = jwtDecode(token)
+    return payload.user
+  } catch {
+    return null
+  }
+}
+
 function App() {
+  const [user, setUser] = useState(getUserFromToken())
+
   return <RouterProvider router={router} />
 }
 
