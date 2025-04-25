@@ -14,6 +14,11 @@ router.get("/", async (req, res) => {
   res.send(cows)
 })
 
+router.get("/breed/:breedId", async (req, res) => {
+  const cows = await Cow.find({ breed: req.params.breedId })
+  res.send(cows)
+})
+
 // specialized update endpoint
 // this one takes in an array and updates all of the given cows
 // rather than hitting the generic PUT endpoint many times
