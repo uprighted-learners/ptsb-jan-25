@@ -35,21 +35,41 @@ function Auth({ logInMode }) {
       .catch((err) => console.error(err))
   }
 
+  const checkPasswordValidity = (passString) => {
+    // TODO: find a list of special chars somewhere
+    const specialChars = ["!", "@", "#"]
+
+    const includesSpecialChars = specialChars.some((char) =>
+      passString.includes(char)
+    )
+    const includesUpperCase = passString !== passString.toLowerCase()
+
+    const isLongEnough = passString.length > 8
+
+    return includesSpecialChars && includesUpperCase && isLongEnough
+  }
+
   const handleRegister = () => {
-    fetch(`http://localhost:4000/auth/register`, {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error()
-        }
-        logIn()
+    if (!checkPasswordValidity(password)) {
+      setAuthError(
+        "Password must include at least one special character and one uppercase letter"
+      )
+    } else {
+      fetch(`http://localhost:4000/auth/register`, {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: { "Content-Type": "application/json" },
       })
-      .catch((err) => {
-        setAuthError(err.message)
-      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error()
+          }
+          logIn()
+        })
+        .catch((err) => {
+          setAuthError(err.message)
+        })
+    }
   }
 
   return (
